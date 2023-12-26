@@ -18,6 +18,26 @@ class ViewController: UIViewController {
     }
 
     @IBAction func keyPressed(_ sender: UIButton) {
+        playSound()
+    }
+    
+    func playSound(){
+        guard let url = Bundle.main.url(forResource: "C", withExtension: "wav" ) else { return }
+        
+        do{
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            /*For iOS 11*/
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            
+            guard let player = player else { return }
+            
+            player.play()
+        }
+        catch let error{
+            print(error.localizedDescription)
+        }
     }
     
     
