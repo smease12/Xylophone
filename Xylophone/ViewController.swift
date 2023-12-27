@@ -10,6 +10,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func keyPressed(_ sender: UIButton) {
+        sender.alpha = 0.5
         playSound(soundName: sender.currentTitle!)
     }
     
